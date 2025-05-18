@@ -42,7 +42,8 @@ Pillow \
 tqdm \
 protobuf \
 evaluate \
-albumentations
+albumentations \
+bleu
 ```
 
 ## 3. 模型训练、评估、预测
@@ -67,10 +68,10 @@ unzip -d dataset/UniMER-1M/HME100K/ path/HME100K/test.zip
 ```shell
 # 下载预训练模型
 cd tests/trocr/
-# token解析模型，不用转换权重，下载到工作目录
-git clone https://huggingface.co/microsoft/trocr-small-stage1
+# token解析模型，不用转换权重，从huggingface下载到工作目录
+huggingface-cli download --local-dir trocr-small-stage1 microsoft/trocr-small-stage1
 # 使用 https://huggingface.co/SWHL/TrOCR-Formula-Rec/tree/main/Exp8 转换后的权重，转换脚本 tests/trocr/convert_weight.py
-git clone https://huggingface.co/co63oc/trocr-paddle
+huggingface-cli download --local-dir trocr-paddle co63oc/trocr-paddle
 ```
 
 
