@@ -9,7 +9,7 @@ Original Project：
 
 | Model        | SPE-<br/>BLEU↑ | SPE-<br/>EditDis↓ | CPE-<br/>BLEU↑  |CPE-<br/>EditDis↓ | SCE-<br/>BLEU↑ | SCE-<br/>EditDis↓ | HWE-<br/>BLEU↑ | HWE-<br/>EditDis↓ | Download link |
 |-----------|------------|-------------------------------------------------------|:--------------:|:-----------------:|:----------:|:----------------:|:---------:|:-----------------:|:--------------:|:-----------------:|-------|
-| UniMERNet |     0.9187     |      0.0584       |  0.9252    |      0.0596      | 0.6068 |     0.2297        |   0.9157|     0.0546           |[Trained model](https://huggingface.co/co63oc/trocr-paddle)|
+| TrOCR-Formula-Rec |     0.886     |      0.069       |  0.822    |      0.108      | 0.634 |     0.216        |   0.897|     0.067           |[Trained model](https://huggingface.co/co63oc/trocr-paddle)|
 
 SPE represents simple formulas, CPE represents complex formulas, SCE represents scanned captured formulas, and HWE represents handwritten formulas. Example images of each type of formula are shown below:
 
@@ -19,6 +19,7 @@ SPE represents simple formulas, CPE represents complex formulas, SCE represents 
 Please refer to ["Environment Preparation"](../../ppocr/environment.en.md) to configure the PaddleOCR environment, and refer to ["Project Clone"](../../ppocr/blog/clone.en.md) to clone the project code.
 
 Furthermore, additional dependencies need to be installed:
+
 ```shell
 # Both PaddleNLP and PaddleMIX have undergone modifications. If the modifications have not been merged into the development branch, you need to clone the code for installation, and the branch name is trocr
 git clone https://github.com/co63oc/PaddleNLP/
@@ -78,8 +79,8 @@ huggingface-cli download --local-dir trocr-paddle co63oc/trocr-paddle
 
 #### Training
 
-
 具体地，在完成数据准备后，便可以启动训练，训练命令如下：
+
 ```shell
 #单卡训练 (默认训练方式)
 python3 tools/train.py -c configs/rec/UniMERNet.yaml \

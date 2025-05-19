@@ -10,7 +10,7 @@
 
 | 模型        | SPE-<br/>BLEU↑ | SPE-<br/>EditDis↓ | CPE-<br/>BLEU↑  |CPE-<br/>EditDis↓ | SCE-<br/>BLEU↑ | SCE-<br/>EditDis↓ | HWE-<br/>BLEU↑ | HWE-<br/>EditDis↓ | 下载链接 |
 |-----------|------------|-------------------------------------------------------|:--------------:|:-----------------:|:----------:|:----------------:|:---------:|:-----------------:|:--------------:|:-----------------:|-------|
-| UniMERNet |     0.9187     |      0.0584       |  0.9252    |      0.0596      | 0.6068 |     0.2297        |   0.9157|     0.0546           |[训练模型](https://huggingface.co/co63oc/trocr-paddle)|
+| TrOCR-Formula-Rec |     0.886     |      0.069       |  0.822    |      0.108      | 0.634 |     0.216        |   0.897|     0.067           |[训练模型](https://huggingface.co/co63oc/trocr-paddle)|
 
 其中，SPE表示简单公式，CPE表示复杂公式，SCE表示扫描捕捉公式，HWE表示手写公式。每种类型的公式示例图如下：
 ![unimernet_dataset](https://github.com/user-attachments/assets/fb801a36-5614-4031-8585-700bd9f8fb2e)
@@ -74,13 +74,12 @@ huggingface-cli download --local-dir trocr-small-stage1 microsoft/trocr-small-st
 huggingface-cli download --local-dir trocr-paddle co63oc/trocr-paddle
 ```
 
-
 ### 3.3 模型训练
 
 #### 启动训练
 
-
 具体地，在完成数据准备后，便可以启动训练，训练命令如下：
+
 ```shell
 #单卡训练 (默认训练方式)
 python3 tools/train.py -c configs/rec/UniMERNet.yaml \
@@ -111,6 +110,7 @@ python ./test.py
 ### 3.5 预测
 
 使用如下命令进行单张图片预测：
+
 ```shell
 # 修改文件中不同图片路径测试。
 cd tests/trocr/

@@ -9,11 +9,11 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 import numpy as np
-import torch
+import paddle
 from PIL import Image
-from torch.utils.data import Dataset
+from paddle.io import Dataset
 from tqdm import tqdm
-from transformers import (
+from ppdiffusers.transformers import (
     AutoTokenizer,
     Seq2SeqTrainer,
     Seq2SeqTrainingArguments,
@@ -46,7 +46,7 @@ class IAMDataset(Dataset):
         # data augmentation
         image = self.train_processor(np.array(image))
 
-        pixel_values = self.processor(image, return_tensors="pt").pixel_values
+        pixel_values = self.processor(image, return_tensors="pd").pixel_values
         labels = self.tokenizer(
             text,
             padding="max_length",
@@ -60,7 +60,7 @@ class IAMDataset(Dataset):
 
         encoding = {
             "pixel_values": pixel_values.squeeze(),
-            "labels": torch.tensor(labels),
+            "labels": paddle.to_tensor(labels),
         }
         return encoding
 
@@ -146,7 +146,7 @@ if __name__ == "__main__":
 
     labels = encoding["labels"]
     labels[labels == -100] = processor.tokenizer.pad_token_id
-    label_str = processor.decode(labels, skip_special_tokens=True)
+    label_str = processor.decode(labels, skip_special_tokens=True, clean_up_tokenization_spaces=None)
     print(label_str)
 
     print("Loading the model")
