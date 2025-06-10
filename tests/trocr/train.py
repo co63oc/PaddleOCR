@@ -150,7 +150,7 @@ if __name__ == "__main__":
     print(label_str)
 
     print("Loading the model")
-    model = VisionEncoderDecoderModel.from_pretrained(model_name)
+    model = VisionEncoderDecoderModel.from_pretrained("./trocr-paddle")
     model.config.decoder_start_token_id = processor.tokenizer.cls_token_id
     model.config.pad_token_id = processor.tokenizer.pad_token_id
     model.config.vocab_size = model.config.decoder.vocab_size
